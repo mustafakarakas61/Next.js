@@ -1,6 +1,6 @@
 "use client"
 
-import {Fragment, useState} from 'react'
+import {Fragment, useEffect, useState} from 'react'
 import {Dialog, Disclosure, Popover, Transition} from '@headlessui/react'
 import {
     ArrowPathIcon,
@@ -12,6 +12,11 @@ import {
     XMarkIcon,
 } from '@heroicons/react/24/outline'
 import {ChevronDownIcon, PhoneIcon, PlayCircleIcon} from '@heroicons/react/20/solid'
+import Link from "next/link";
+import axios from "axios";
+import toast from "react-hot-toast";
+import {useRouter} from "next/navigation";
+import "@/styles/Home.module.css"
 
 const products = [
     {name: 'Analytics', description: 'This is analytics', href: ' #', icon: ChartPieIcon},
@@ -29,14 +34,49 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
+
 export default function Header() {
+    const router = useRouter()
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [loading, setLoading] = useState(false)
+
+    const logout = async () => {
+        setIsLoggedIn(false)
+        try {
+            setLoading(true)
+            await axios.get("/api/users/logout")
+            toast.success("Logout successful")
+            router.push("../login")
+        } catch (error) {
+            console.error(error)
+            setIsLoggedIn(true)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    useEffect( () => {
+        const fetchUser = async () => {
+            try{
+                setLoading(true)
+                await axios.get('/api/users/me')
+                setIsLoggedIn(true)
+            } catch (error) {
+                setIsLoggedIn(false)
+            } finally {
+                setLoading(false)
+            }
+        } ;
+
+        fetchUser();
+    }, [])
 
     return (
         <header className="bg-white navbar shadow-md">
             <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div className="flex lg:flex-1">
-                    <a href="#" className="-m-1.5 p-1.5">
+                    <a href="/" className="-m-1.5 p-1.5">
                         <span className="sr-only">My Company</span>
                         <img className="h-8 w-auto"
                              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="my img"/>
@@ -112,17 +152,28 @@ export default function Header() {
                     <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
                         Features
                     </a>
-                    <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                        Marketplace
-                    </a>
-                    <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                        Company
+                    <Link href="../customers" className="text-sm font-semibold leading-6 text-gray-900">
+                        Customers
+                    </Link>
+                    <a href="../profile" className="text-sm font-semibold leading-6 text-gray-900">
+                        Profile
                     </a>
                 </Popover.Group>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                        Log in <span aria-hidden="true">&rarr;</span>
-                    </a>
+                    {loading ? (
+                       ''
+                    ) : (
+                        isLoggedIn ? (
+                                <Link onClick={logout} href="#" className="text-sm font-semibold leading-6 text-gray-900">
+                                    Logout <span aria-hidden="true">&rarr;</span>
+                                </Link>
+                            ) : (
+                                <Link href="../login"
+                                      className="text-sm font-semibold leading-6 text-gray-900">
+                                    LoginX <span aria-hidden="true">&rarr;</span>
+                                </Link>
+                            )
+                    )}
                 </div>
             </nav>
             <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -197,12 +248,17 @@ export default function Header() {
                                 </a>
                             </div>
                             <div className="py-6">
-                                <a
-                                    href="#"
-                                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                                >
-                                    Log in
-                                </a>
+                                {isLoggedIn ? (
+                                    <Link onClick={logout} href="#"
+                                          className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                                        Logout
+                                    </Link>
+                                ) : (
+                                    <Link href="../login"
+                                          className="text-sm font-semibold leading-6 text-gray-900">
+                                        Login <span aria-hidden="true">&rarr;</span>
+                                    </Link>
+                                )}
                             </div>
                         </div>
                     </div>
