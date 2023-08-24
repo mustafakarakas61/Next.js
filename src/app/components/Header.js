@@ -39,7 +39,7 @@ export default function Header() {
     const router = useRouter()
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     const logout = async () => {
         setIsLoggedIn(false)
@@ -76,11 +76,11 @@ export default function Header() {
         <header className="bg-white navbar shadow-md w-full">
             <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div className="flex lg:flex-1">
-                    <Link href="/" className="-m-1.5 p-1.5">
+                    <a href="/" className="-m-1.5 p-1.5">
                         <span className="sr-only">My Company</span>
                         <img className="h-8 w-auto"
                              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="my img"/>
-                    </Link>
+                    </a>
                 </div>
 
                 <div className="flex lg:hidden">
@@ -164,14 +164,14 @@ export default function Header() {
                        ''
                     ) : (
                         isLoggedIn ? (
-                                <Link onClick={logout} href="#" className="text-sm font-semibold leading-6 text-gray-900">
+                                <a onClick={logout} href="#" className="text-sm font-semibold leading-6 text-gray-900">
                                     Logout <span aria-hidden="true">&#128682;</span>
-                                </Link>
+                                </a>
                             ) : (
-                                <Link href="../login"
+                                <a href="../login"
                                       className="text-sm font-semibold leading-6 text-gray-900">
                                     Login <span aria-hidden="true">&rarr;</span>
-                                </Link>
+                                </a>
                             )
                     )}
                 </div>
