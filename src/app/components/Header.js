@@ -73,14 +73,14 @@ export default function Header() {
     }, [])
 
     return (
-        <header className="bg-white navbar shadow-md">
+        <header className="bg-white navbar shadow-md w-full">
             <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div className="flex lg:flex-1">
-                    <a href="/" className="-m-1.5 p-1.5">
+                    <Link href="/" className="-m-1.5 p-1.5">
                         <span className="sr-only">My Company</span>
                         <img className="h-8 w-auto"
                              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="my img"/>
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="flex lg:hidden">
@@ -123,10 +123,10 @@ export default function Header() {
                                                            aria-hidden="true"/>
                                             </div>
                                             <div className="flex-auto">
-                                                <a href={item.href} className="block font-semibold text-gray-900">
+                                                <Link href={item.href} className="block font-semibold text-gray-900">
                                                     {item.name}
                                                     <span className="absolute inset-0"/>
-                                                </a>
+                                                </Link>
                                                 <p className="mt-1 text-gray-600">{item.description}</p>
                                             </div>
                                         </div>
@@ -149,15 +149,15 @@ export default function Header() {
                         </Transition>
                     </Popover>
 
-                    <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+                    <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
                         Features
-                    </a>
+                    </Link>
                     <Link href="../customers" className="text-sm font-semibold leading-6 text-gray-900">
                         Customers
                     </Link>
-                    <a href="../profile" className="text-sm font-semibold leading-6 text-gray-900">
+                    <Link href="../profile" className="text-sm font-semibold leading-6 text-gray-900">
                         Profile
-                    </a>
+                    </Link>
                 </Popover.Group>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                     {loading ? (
@@ -165,12 +165,12 @@ export default function Header() {
                     ) : (
                         isLoggedIn ? (
                                 <Link onClick={logout} href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                                    Logout <span aria-hidden="true">&rarr;</span>
+                                    Logout <span aria-hidden="true">&#128682;</span>
                                 </Link>
                             ) : (
                                 <Link href="../login"
                                       className="text-sm font-semibold leading-6 text-gray-900">
-                                    LoginX <span aria-hidden="true">&rarr;</span>
+                                    Login <span aria-hidden="true">&rarr;</span>
                                 </Link>
                             )
                     )}
@@ -181,14 +181,14 @@ export default function Header() {
                 <Dialog.Panel
                     className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                     <div className="flex items-center justify-between">
-                        <a href="#" className="-m-1.5 p-1.5">
+                        <Link href="#" className="-m-1.5 p-1.5">
                             <span className="sr-only">My Company</span>
                             <img
                                 className="h-8 w-auto"
                                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                                 alt="my img"
                             />
-                        </a>
+                        </Link>
                         <button
                             type="button"
                             className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -228,24 +228,24 @@ export default function Header() {
                                     )}
 
                                 </Disclosure>
-                                <a
+                                <Link
                                     href="#"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                 >
                                     Features
-                                </a>
-                                <a
+                                </Link>
+                                <Link
                                     href="#"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                 >
                                     Marketplace
-                                </a>
-                                <a
+                                </Link>
+                                <Link
                                     href="#"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                 >
                                     Company
-                                </a>
+                                </Link>
                             </div>
                             <div className="py-6">
                                 {isLoggedIn ? (
