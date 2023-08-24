@@ -16,6 +16,7 @@ import Link from "next/link";
 import axios from "axios";
 import toast from "react-hot-toast";
 import {useRouter} from "next/navigation";
+import Image from "next/image";
 
 const products = [
     {name: 'Analytics', description: 'This is analytics', href: ' #', icon: ChartPieIcon},
@@ -55,9 +56,9 @@ export default function Header() {
         }
     }
 
-    useEffect( () => {
+    useEffect(() => {
         const fetchUser = async () => {
-            try{
+            try {
                 setLoading(true)
                 await axios.get('/api/users/me')
                 setIsLoggedIn(true)
@@ -66,14 +67,15 @@ export default function Header() {
             } finally {
                 setLoading(false)
             }
-        } ;
+        };
 
         fetchUser();
     }, [])
 
     return (
         <header className="bg-white shadow-md w-full">
-            <nav className="flex h-20 mx-auto max-w-7xl items-center justify-between lg:px-8 lg:gap-x-12" aria-label="Global">
+            <nav className="flex h-20 mx-auto max-w-7xl items-center justify-between lg:px-8 lg:gap-x-12"
+                 aria-label="Global">
                 <div className="flex lg:flex-1">
                     <a href="/" className="-m-1.5 p-1.5">
                         <span className="sr-only">My Company</span>
@@ -167,10 +169,16 @@ export default function Header() {
                                 Logout <span aria-hidden="true">&#128682;</span>
                             </a>
                         ) : (
-                            <a href="../login"
-                               className="text-sm font-semibold leading-6 text-gray-900">
-                                Login <span aria-hidden="true">&rarr;</span>
-                            </a>
+                            <div>
+                                <a href="../login"
+                                   className="text-sm font-semibold leading-6 text-gray-900">
+                                    Login
+                                </a> &nbsp;<span className="text-primary">|</span> &nbsp;
+                                <a href="../signup"
+                                   className="text-sm font-semibold leading-6 text-gray-900">
+                                    Signup
+                                </a>
+                            </div>
                         )
                     )}
                 </div>
