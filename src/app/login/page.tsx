@@ -40,7 +40,7 @@ export default function LoginPage() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1>{loading ? "Processing":"Login"}</h1>
+            <h1>{loading ? <span className="loading loading-spinner text-primary"></span>:"Login"}</h1>
             <hr/>
             <label htmlFor="email">email</label>
             <input

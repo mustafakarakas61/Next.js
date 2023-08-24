@@ -16,7 +16,6 @@ import Link from "next/link";
 import axios from "axios";
 import toast from "react-hot-toast";
 import {useRouter} from "next/navigation";
-import "@/styles/Home.module.css"
 
 const products = [
     {name: 'Analytics', description: 'This is analytics', href: ' #', icon: ChartPieIcon},
@@ -73,8 +72,8 @@ export default function Header() {
     }, [])
 
     return (
-        <header className="bg-white navbar shadow-md w-full">
-            <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+        <header className="bg-white shadow-md w-full">
+            <nav className="flex h-20 mx-auto max-w-7xl items-center justify-between lg:px-8 lg:gap-x-12" aria-label="Global">
                 <div className="flex lg:flex-1">
                     <a href="/" className="-m-1.5 p-1.5">
                         <span className="sr-only">My Company</span>
@@ -149,30 +148,30 @@ export default function Header() {
                         </Transition>
                     </Popover>
 
-                    <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
+                    <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
                         Features
-                    </Link>
-                    <Link href="../customers" className="text-sm font-semibold leading-6 text-gray-900">
+                    </a>
+                    <a href="../customers" className="text-sm font-semibold leading-6 text-gray-900">
                         Customers
-                    </Link>
+                    </a>
                     <a href="../profile" className="text-sm font-semibold leading-6 text-gray-900">
                         Profile
                     </a>
                 </Popover.Group>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                     {loading ? (
-                       ''
+                        <span className="loading loading-ball loading-sm"></span>
                     ) : (
                         isLoggedIn ? (
-                                <a onClick={logout} href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                                    Logout <span aria-hidden="true">&#128682;</span>
-                                </a>
-                            ) : (
-                                <a href="../login"
-                                      className="text-sm font-semibold leading-6 text-gray-900">
-                                    Login <span aria-hidden="true">&rarr;</span>
-                                </a>
-                            )
+                            <a onClick={logout} href="#" className="text-sm font-semibold leading-6 text-gray-900">
+                                Logout <span aria-hidden="true">&#128682;</span>
+                            </a>
+                        ) : (
+                            <a href="../login"
+                               className="text-sm font-semibold leading-6 text-gray-900">
+                                Login <span aria-hidden="true">&rarr;</span>
+                            </a>
+                        )
                     )}
                 </div>
             </nav>

@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <footer className="bg-white navbar shadow-md w-full">
+        <footer className="bg-white shadow-md w-full">
             <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div>
                     <svg width="50" height="50" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd"
