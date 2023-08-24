@@ -155,9 +155,9 @@ export default function Header() {
                     <Link href="../customers" className="text-sm font-semibold leading-6 text-gray-900">
                         Customers
                     </Link>
-                    <Link href="../profile" className="text-sm font-semibold leading-6 text-gray-900">
+                    <a href="../profile" className="text-sm font-semibold leading-6 text-gray-900">
                         Profile
-                    </Link>
+                    </a>
                 </Popover.Group>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                     {loading ? (
