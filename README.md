@@ -1,7 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Proje deployed on [Vercel App](https://next-a5olfrlpd-mustafakarakas61.vercel.app/)
+
 ## Getting Started
-- `npm i axios bcryptjs jsonwebtoken nodemailer react-hot-toast mongoose` gerekli kütüphaneler başlarken
+- `npm install, npm i axios bcryptjs jsonwebtoken nodemailer react-hot-toast mongoose` gerekli kütüphaneler başlarken
 
 First, run the development server:
 
