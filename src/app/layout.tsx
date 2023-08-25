@@ -16,7 +16,7 @@ export default function RootLayout({children,}: { children: React.ReactNode }) {
     return (
         <html lang="en">
         <body className={inter.className}>
-        <div className="flex flex-col items-center justify-start drawer-content">
+        <div className="bg-primary flex flex-col items-center justify-start drawer-content">
             <Header/>
             <main>{children}</main>
             <Footer/>
