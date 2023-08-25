@@ -162,7 +162,7 @@ export default function Header() {
                 </Popover.Group>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                     {loading ? (
-                        <span className="loading loading-ball loading-sm"></span>
+                        <span className="text-black loading loading-ball loading-sm"></span>
                     ) : (
                         isLoggedIn ? (
                             <a onClick={logout} href="#" className="text-sm font-semibold leading-6 text-gray-900">
