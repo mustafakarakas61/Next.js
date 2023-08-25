@@ -63,6 +63,12 @@ export default function Header() {
                 await axios.get('/api/users/me')
                 setIsLoggedIn(true)
             } catch (error) {
+                try{
+                    await axios.get("/api/users/logout")
+                } catch (error) {
+                    console.error(error)
+                    setIsLoggedIn(false)
+                }
                 setIsLoggedIn(false)
             } finally {
                 setLoading(false)
