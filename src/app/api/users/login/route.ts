@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
         }
 
         if (!user.isVerified) {
-            return NextResponse.json({error: "Please verify the email"}, {status: 401})
+            return NextResponse.json({error: "Please verify the email"}, {status: 400}) // 401 verince build hatası verdi
         }
 
         // create token data
