@@ -5,11 +5,11 @@ import {Dialog, Disclosure, Popover, Transition} from '@headlessui/react'
 import {
     ArrowPathIcon,
     Bars3Icon,
-    ChartPieIcon,
-    CursorArrowRaysIcon,
     FingerPrintIcon,
     SquaresPlusIcon,
     XMarkIcon,
+    Square3Stack3DIcon,
+    SparklesIcon
 } from '@heroicons/react/24/outline'
 import {ChevronDownIcon, PhoneIcon, PlayCircleIcon} from '@heroicons/react/20/solid'
 import Link from "next/link";
@@ -18,9 +18,9 @@ import toast from "react-hot-toast";
 import {useRouter} from "next/navigation";
 import Image from "next/image";
 
-const products = [
-    {name: 'Analytics', description: 'This is analytics', href: ' #', icon: ChartPieIcon},
-    {name: 'Engagement', description: 'This is engagement', href: '#', icon: CursorArrowRaysIcon},
+const topics = [
+    {name: 'Design Patterns', description: 'Yazılımın geliştirme aşamasındaki yeni bir senaryoda sorunun nasıl çözüleceğini bilmek için kullanılan bir şablon yöntemidir. Bu tasarım kalıplarını takip etmek, çeşitli geliştirme problemlerini çözmenize yardımcı olabilir.', href: '/topics/design-patterns', icon: Square3Stack3DIcon},
+    {name: 'SOLID Principles', description: 'This is SOLID Principles', href: '/topics/solid-principles', icon: SparklesIcon},
     {name: 'Security', description: 'This is security', href: '#', icon: FingerPrintIcon},
     {name: 'Integrations', description: 'This is integrations', href: '#', icon: SquaresPlusIcon},
     {name: 'Automations', description: 'This is automations', href: '#', icon: ArrowPathIcon},
@@ -104,7 +104,7 @@ export default function Header() {
                     <Popover className="relative">
                         <Popover.Button
                             className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-                            Product
+                            Topics
                             <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true"/>
                         </Popover.Button>
 
@@ -120,7 +120,7 @@ export default function Header() {
                             <Popover.Panel
                                 className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
                                 <div className="p-4">
-                                    {products.map((item) => (
+                                    {topics.map((item) => (
                                         <div
                                             key={item.name}
                                             className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"

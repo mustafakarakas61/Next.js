@@ -27,6 +27,10 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({error: "Please fill in the fields validly."}, {status: 400})
         }
 
+        if (name.toString().length > 20 || surname.toString().length > 20 || username.toString().length > 15 || email.toString().length > 40) {
+            return NextResponse.json({error: "Please fill in the fields validly."}, {status: 400})
+        }
+
         if (password.toString().length < 6) {
             return NextResponse.json({error: "Please enter password more than 6 characters"}, {status: 400})
         }
@@ -48,8 +52,6 @@ export async function POST(request: NextRequest) {
 
         // send verification email
         await sendEmail({email, emailType: "VERIFY", userId: savedUser._id})
-
-        // todo : Kullanıcı mail doğrulattır, yoksa giriş yapamaz, aktif olmayanlar giriş yapamasın
 
         return NextResponse.json({
             message: "User created successfully",
