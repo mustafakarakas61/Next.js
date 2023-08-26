@@ -1,7 +1,9 @@
 import {connect} from "@/config/dbConfig"
 import User from "@/models/userModel"
 import {NextRequest, NextResponse} from "next/server";
+// @ts-ignore
 import bcryptjs from "bcryptjs";
+// @ts-ignore
 import jwt from "jsonwebtoken";
 
 connect()
