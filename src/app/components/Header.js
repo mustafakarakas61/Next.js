@@ -40,6 +40,7 @@ export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [loading, setLoading] = useState(true)
+    const [data, setData] = useState(null)
 
     const logout = async () => {
         setIsLoggedIn(false)
@@ -60,13 +61,13 @@ export default function Header() {
         const fetchUser = async () => {
             try {
                 setLoading(true)
-                await axios.get('/api/users/me')
+                const res = await axios.get('/api/users/me')
+                setData(res.data.data.username)
                 setIsLoggedIn(true)
             } catch (error) {
                 try{
                     await axios.get("/api/users/logout")
                 } catch (error) {
-                    console.error(error)
                     setIsLoggedIn(false)
                 }
                 setIsLoggedIn(false)
@@ -162,7 +163,7 @@ export default function Header() {
                     <a href="../customers" className="text-sm font-semibold leading-6 text-gray-900">
                         Customers
                     </a>
-                    <a href="../profile" className="text-sm font-semibold leading-6 text-gray-900">
+                    <a href={`/profile/${data}`} className="text-sm font-semibold leading-6 text-gray-900">
                         Profile
                     </a>
                 </Popover.Group>

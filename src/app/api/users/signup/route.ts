@@ -12,15 +12,23 @@ connect()
 export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json()
-        const {username, email, password} = reqBody
+        const {name, surname, username, email, password} = reqBody
 
         console.log(reqBody);
 
         // check if user already exists
-        const user = await User.findOne({email})
+        const user = await User.findOne({username})
 
         if (user) {
             return NextResponse.json({error: "User already exists"}, {status: 400})
+        }
+
+        if (name.toString().length < 4 || surname.toString().length < 4 || username.toString().length < 4 || email.toString().length < 8) {
+            return NextResponse.json({error: "Please fill in the fields validly."}, {status: 400})
+        }
+
+        if (password.toString().length < 6) {
+            return NextResponse.json({error: "Please enter password more than 6 characters"}, {status: 400})
         }
 
         // hash password
@@ -28,6 +36,8 @@ export async function POST(request: NextRequest) {
         const hashedPassword = await bcryptjs.hash(password, salt)
 
         const newUser = new User({
+            name,
+            surname,
             username,
             email,
             password: hashedPassword
@@ -38,6 +48,8 @@ export async function POST(request: NextRequest) {
 
         // send verification email
         await sendEmail({email, emailType: "VERIFY", userId: savedUser._id})
+
+        // todo : Kullanıcı mail doğrulattır, yoksa giriş yapamaz, aktif olmayanlar giriş yapamasın
 
         return NextResponse.json({
             message: "User created successfully",

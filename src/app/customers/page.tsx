@@ -42,7 +42,7 @@ export default function CustomersPage() {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
                 {loading ? (
-                    <span className="loading loading-spinner text-primary"></span>
+                    <span className="loading loading-spinner text-white"></span>
                     ) : isLoggedIn && users.length > 0 ? (
                     <table className = "table">
                         <thead>

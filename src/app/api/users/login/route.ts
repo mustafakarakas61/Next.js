@@ -1,9 +1,7 @@
 import {connect} from "@/config/dbConfig"
 import User from "@/models/userModel"
 import {NextRequest, NextResponse} from "next/server";
-// @ts-ignore
 import bcryptjs from "bcryptjs";
-// @ts-ignore
 import jwt from "jsonwebtoken";
 
 connect()
@@ -11,11 +9,15 @@ connect()
 export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json();
-        const {email, password} = reqBody;
+        const {username, password} = reqBody;
         console.log(reqBody);
 
+        if (username.toString().length < 4 || password.toString().length < 4) {
+            return NextResponse.json({error: "Please enter more than 4 characters"}, {status: 400})
+        }
+
         // check if user exists
-        const user = await User.findOne({email})
+        const user = await User.findOne({username})
 
         if (!user) {
             return NextResponse.json({error: "User does not exist"}, {status: 400})
@@ -26,6 +28,10 @@ export async function POST(request: NextRequest) {
 
         if (!validPassword) {
             return NextResponse.json({error: "Invalid password"}, {status: 400})
+        }
+
+        if (!user.isVerified) {
+            return NextResponse.json({error: "Please verify the email"}, {status: 401})
         }
 
         // create token data
