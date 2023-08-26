@@ -41,7 +41,7 @@ export default function UserProfile({params}: any) {
                             <hr/>
                             <p className="text-4xl">
                                 <span className="text-white">{
-                                    data == null ? null : data.data != null ? (<span>{data.data.data.name} {data.data.data.surname}</span>) : null
+                                    data != null ? (<span>{data.data.data.name} {data.data.data.surname}</span>) : null
                                 }</span>
                                 <span className="p-2 ml-2 rounded bg-blue-500 text-black">{params.username}</span>
                             </p>
