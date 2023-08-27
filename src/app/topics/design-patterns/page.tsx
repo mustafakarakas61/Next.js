@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function DesignPatternsPage() {
     return (
         <main className="flex items-center justify-center min-h-screen py-2">
@@ -26,7 +28,7 @@ export default function DesignPatternsPage() {
                             </p>
                         </li>
                         <li>
-                            <b>Builder (Oluşturucu)</b>
+                            <b><Link href="/topics/design-patterns/builder">Builder (Oluşturucu)</Link></b>
                             <p className="mb-1">
                                 Bir nesnenin karmaşık yapısını adım adım oluşturmayı ve temsil etmeyi sağlar.
                             </p>
