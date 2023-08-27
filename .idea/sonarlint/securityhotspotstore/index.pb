@@ -34,7 +34,5 @@ P
  src/app/api/users/login/route.ts,1\5\152142eebe9877eb758e2c2eb7a225bd3733a3c8
 E
 src/helpers/mailer.ts,e\f\efc413686b0538818a340f80e5ee4258796640c0
-@
-src/app/page.tsx,3\3\3393394e21dbac7686e91ad17c5283fb052d67f3
 Q
 !src/app/api/users/signup/route.ts,0\4\040ef910030127510fa4fe32b54cc3f3ccb3424c
