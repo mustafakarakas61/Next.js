@@ -85,6 +85,8 @@ export default function BuilderPage() {
                                     height={318}
                                     className="rounded-lg border-4 border-amber-600"
                                 />
+
+                                Not : Person sınıfı için ayrı bir PersonBuilder sınıfı oluşturulup kullanılması daha iyi olacaktır.
                             </div>
                         </div>
                     </div>
