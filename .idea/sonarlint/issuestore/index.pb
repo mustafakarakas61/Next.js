@@ -1,7 +1,4 @@
 
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 <
 package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
 9
@@ -14,8 +11,6 @@ B
 src/app/layout.tsx,c\f\cfb47de6ae0cae626eed46461300112ef521d977
 Q
 !src/app/api/users/logout/route.ts,b\5\b5f26b4564d2bae7e24beed682ff02e4668e30c7
-A
-src/middleware.ts,c\8\c877023f10ac16a1ece2899a03aec3e05df9896c
 T
 $src/app/api/users/customers/route.ts,2\7\27e22ff34e9f8a75d13c85d1f26afa036cb0cd66
 G
@@ -30,8 +25,6 @@ P
  src/app/api/users/login/route.ts,1\5\152142eebe9877eb758e2c2eb7a225bd3733a3c8
 V
 &src/app/api/users/verifyemail/route.ts,c\5\c596fd1dbc63cd8cfa343a3fb18e5cae68cde6da
-Q
-!src/app/api/users/signup/route.ts,0\4\040ef910030127510fa4fe32b54cc3f3ccb3424c
 E
 src/helpers/mailer.ts,e\f\efc413686b0538818a340f80e5ee4258796640c0
 F
