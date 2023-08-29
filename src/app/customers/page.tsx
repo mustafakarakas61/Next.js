@@ -40,14 +40,15 @@ export default function CustomersPage() {
     }, [isLoggedIn])
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
+        <main className="flex flex-col items-center justify-center min-h-screen">
+            <div className="items-center justify-center overflow-x-auto h-96">
                 {loading ? (
                     <span className="loading loading-spinner text-white"></span>
-                    ) : isLoggedIn && users.length > 0 ? (
-                    <table className = "table">
+                ) : isLoggedIn && users.length > 0 ? (
+                    <table className = "table table-pin-rows">
                         <thead>
                         <tr>
-                            <th></th>
+                            <th>No</th>
                             <th>Username</th>
                             <th>Email</th>
                         </tr>
@@ -68,6 +69,7 @@ export default function CustomersPage() {
                 ) : (
                     <p>No users available, please log in</p>
                 )}
-        </div>
+            </div>
+        </main>
     )
 }

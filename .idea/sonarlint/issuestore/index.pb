@@ -29,3 +29,16 @@ E
 src/helpers/mailer.ts,e\f\efc413686b0538818a340f80e5ee4258796640c0
 F
 src/app/login/page.tsx,0\d\0de71383b279c151efbcd91d21333819635113ab
+:
+
+sample.env,c\f\cf8429425f2e40e704e19e7c367066349a7b0d86
+O
+src/helpers/getDataFromToken.ts,a\d\ad466917964d3db13ddd98c6944a757316fc0d67
+B
+tailwind.config.ts,5\2\52c961376029165b06e7861b1dc68c3b2455eeff
+@
+src/app/page.tsx,3\3\3393394e21dbac7686e91ad17c5283fb052d67f3
+L
+src/app/verifyemail/page.tsx,d\4\d408dcfc1386f23acdb4d9fda3b752a06b908b3d
+>
+next.config.js,8\1\811a6d5a2e04fadb44d8eec365f2fa8af5c4facf
