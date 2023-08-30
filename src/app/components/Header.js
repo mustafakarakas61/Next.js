@@ -48,7 +48,7 @@ export default function Header() {
             setLoading(true)
             await axios.get("/api/users/logout")
             toast.success("Logout successful")
-            router.push("../login")
+            router.push("/login")
         } catch (error) {
             console.error(error)
             setIsLoggedIn(true)
@@ -160,7 +160,7 @@ export default function Header() {
                     <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
                         Features
                     </a>
-                    <a href="../customers" className="text-sm font-semibold leading-6 text-gray-900">
+                    <a href="/customers" className="text-sm font-semibold leading-6 text-gray-900">
                         Customers
                     </a>
                     <a href={`/profile/${data}`} className="text-sm font-semibold leading-6 text-gray-900">
@@ -177,11 +177,11 @@ export default function Header() {
                             </a>
                         ) : (
                             <div>
-                                <a href="../login"
+                                <a href="/login"
                                    className="text-sm font-semibold leading-6 text-gray-900">
                                     Login
                                 </a> &nbsp;<span className="text-primary">|</span> &nbsp;
-                                <a href="../signup"
+                                <a href="/signup"
                                    className="text-sm font-semibold leading-6 text-gray-900">
                                     Signup
                                 </a>
@@ -268,7 +268,7 @@ export default function Header() {
                                         Logout
                                     </Link>
                                 ) : (
-                                    <Link href="../login"
+                                    <Link href="/login"
                                           className="text-sm font-semibold leading-6 text-gray-900">
                                         Login <span aria-hidden="true">&rarr;</span>
                                     </Link>

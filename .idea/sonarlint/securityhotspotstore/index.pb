@@ -1,7 +1,6 @@
 
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+<
+package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
 A
 postcss.config.js,3\f\3f70684581fd16ab3be77ca959e0138ef3ee8bfb
 9
@@ -14,8 +13,6 @@ Q
 !src/app/api/users/logout/route.ts,b\5\b5f26b4564d2bae7e24beed682ff02e4668e30c7
 T
 $src/app/api/users/customers/route.ts,2\7\27e22ff34e9f8a75d13c85d1f26afa036cb0cd66
-A
-src/middleware.ts,c\8\c877023f10ac16a1ece2899a03aec3e05df9896c
 G
 src/models/userModel.js,5\4\54a8ae5d561903a36ea185a01c35a8ff2d235fe1
 M
@@ -32,17 +29,16 @@ P
  src/app/api/users/login/route.ts,1\5\152142eebe9877eb758e2c2eb7a225bd3733a3c8
 E
 src/helpers/mailer.ts,e\f\efc413686b0538818a340f80e5ee4258796640c0
-Q
-!src/app/api/users/signup/route.ts,0\4\040ef910030127510fa4fe32b54cc3f3ccb3424c
-J
-src/app/customers/page.tsx,c\4\c4f12caf6db08bbd84015893b4442e8aa1c379cf
-?
-public/next.svg,0\f\0f0d3de08f3cde5481ae7a36082cdc12c93b0f89
-F
-public/trabzonspor.svg,c\b\cbee9dcd3b8e765accb9f3b27106ce1adc1220e6
-A
-public/vercel.svg,0\c\0c3567b3146da917779092b6952cf7aa844d3c76
-j
-:src/app/topics/design-patterns/creational/builder/page.tsx,5\0\500cc1112d42abee04d27cd91fdbfc795230a6ce
 L
-src/app/components/Header.js,2\f\2f0b2113be121e5e1d36a65edeb3ef2dc3f9e488
+src/app/verifyemail/page.tsx,d\4\d408dcfc1386f23acdb4d9fda3b752a06b908b3d
+:
+
+sample.env,c\f\cf8429425f2e40e704e19e7c367066349a7b0d86
+O
+src/helpers/getDataFromToken.ts,a\d\ad466917964d3db13ddd98c6944a757316fc0d67
+B
+tailwind.config.ts,5\2\52c961376029165b06e7861b1dc68c3b2455eeff
+@
+src/app/page.tsx,3\3\3393394e21dbac7686e91ad17c5283fb052d67f3
+>
+next.config.js,8\1\811a6d5a2e04fadb44d8eec365f2fa8af5c4facf
