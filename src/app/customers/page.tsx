@@ -45,27 +45,29 @@ export default function CustomersPage() {
                 {loading ? (
                     <span className="loading loading-spinner text-white"></span>
                 ) : isLoggedIn && users.length > 0 ? (
-                    <table className = "table table-pin-rows">
-                        <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                        </tr>
-                        </thead>
+                    <div className="items-center justify-center overflow-x-auto h-96">
+                        <table className = "flex table table-pin-rows">
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                            </tr>
+                            </thead>
 
-                        <tbody>
-                        {
-                            users.map(({_id, email, username}, index) => (
-                                <tr key={_id} className="hover:bg-blue-300">
-                                    <td>{index + 1}</td>
-                                    <td>{username}</td>
-                                    <td>{email}</td>
-                                </tr>
-                            ))
-                        }
-                        </tbody>
-                    </table>
+                            <tbody>
+                            {
+                                users.map(({_id, email, username}, index) => (
+                                    <tr key={_id} className="hover:bg-blue-300">
+                                        <td>{index + 1}</td>
+                                        <td>{username}</td>
+                                        <td>{email}</td>
+                                    </tr>
+                                ))
+                            }
+                            </tbody>
+                        </table>
+                    </div>
                 ) : (
                     <p>No users available, please log in</p>
                 )}

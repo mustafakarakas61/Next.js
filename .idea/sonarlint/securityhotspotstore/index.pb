@@ -32,11 +32,7 @@ L
 :
 
 sample.env,c\f\cf8429425f2e40e704e19e7c367066349a7b0d86
-O
-src/helpers/getDataFromToken.ts,a\d\ad466917964d3db13ddd98c6944a757316fc0d67
 B
 tailwind.config.ts,5\2\52c961376029165b06e7861b1dc68c3b2455eeff
-@
-src/app/page.tsx,3\3\3393394e21dbac7686e91ad17c5283fb052d67f3
 >
 next.config.js,8\1\811a6d5a2e04fadb44d8eec365f2fa8af5c4facf

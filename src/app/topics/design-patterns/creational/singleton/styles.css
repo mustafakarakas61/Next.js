@@ -1,0 +1,21 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 250vh;
+    background-color: darkred;
+}
+
+.status {
+    position: fixed;
+    color: lightslategray;
+}
+
+.success {
+    color: green;
+}
+
+.element {
+    padding: 1rem;
+    border: 1px solid sandybrown;
+}
