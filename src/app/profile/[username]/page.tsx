@@ -28,6 +28,9 @@ export default function UserProfile({params}: any) {
     const getLoginPage = () => {
         if (!isLoggedIn) {
             router.push("/login")
+           return true
+        } else {
+           return false
         }
     }
 
@@ -61,8 +64,7 @@ export default function UserProfile({params}: any) {
     } else {
         return (
             <div className="flex min-h-screen flex-col items-center justify-between">
-                <span className="loading loading-spinner text-white min-h-screen"></span>
-                {getLoginPage()}
+                <span className="loading loading-spinner text-white min-h-screen">{getLoginPage()}</span>
             </div>
         );
     }
