@@ -22,12 +22,15 @@ export default function UserProfile({params}: any) {
             }
         }
 
-        if(!isLoggedIn) {
-            router.push("/login");
-        }
-
         fetchUser();
-    }, [isLoggedIn])
+    }, [isLoggedIn]);
+
+    const getLoginPage = () => {
+        if (!isLoggedIn) {
+            router.push("/login")
+        }
+    }
+
 
     return (
         <div className="flex min-h-screen flex-col items-center justify-between">
@@ -52,7 +55,7 @@ export default function UserProfile({params}: any) {
                         </div>
                     </div>
                 </div>
-            ) : null}
+            ) : getLoginPage()}
         </div>
     )
 }
