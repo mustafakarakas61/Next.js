@@ -8,7 +8,7 @@ export default function UserProfile({params}: any) {
     const router = useRouter()
     const [loading, setLoading] = useState(true)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [data, setData] = useState(null)
+    const [data, setData] = useState<any>(null)
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -20,6 +20,10 @@ export default function UserProfile({params}: any) {
             } finally {
                 setLoading(false)
             }
+        }
+
+        if(!isLoggedIn) {
+            router.push("/login");
         }
 
         fetchUser();
@@ -48,11 +52,7 @@ export default function UserProfile({params}: any) {
                         </div>
                     </div>
                 </div>
-            ) : (
-                <div>
-                    {router.push("/login")}
-                </div>
-            )}
+            ) : null}
         </div>
     )
 }

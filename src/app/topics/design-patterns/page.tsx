@@ -135,11 +135,11 @@ export default function DesignPatternsPage() {
         <main className="flex items-center justify-center min-h-screen py-2">
             <div className="flex">
                 {designPatterns.map((mainItem) => (
-                    <div className="mx-20 w-full">
+                    <div key={mainItem.name} className="mx-20 w-full">
                         <p className="badge badge-lg badge-outline mt-10 mb-2.5">{mainItem.name}</p>
                         <ol className="list-decimal">
                             {mainItem.value.map((item) => (
-                                <li>
+                                <li key={item.name}>
                                     <b><Link href={item.href}>{item.name}</Link></b>
                                     <p className="mb-1">
                                         {item.description}
