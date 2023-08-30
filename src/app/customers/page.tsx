@@ -41,7 +41,7 @@ export default function CustomersPage() {
 
     return (
         <main className="flex flex-col items-center justify-center min-h-screen">
-            <div className="items-center justify-center overflow-x-auto h-96">
+            <div className="flex items-center justify-center overflow-x-auto h-96">
                 {loading ? (
                     <span className="loading loading-spinner text-white"></span>
                 ) : isLoggedIn && users.length > 0 ? (
