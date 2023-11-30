@@ -12,7 +12,6 @@ export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json();
         const {username, password} = reqBody;
-        console.log(reqBody);
 
         if (username.toString().length < 4 || password.toString().length < 4) {
             return NextResponse.json({error: "Please enter more than 4 characters"}, {status: 400})

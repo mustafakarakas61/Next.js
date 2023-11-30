@@ -11,7 +11,13 @@ import {
     Square3Stack3DIcon,
     SparklesIcon
 } from '@heroicons/react/24/outline'
-import {ChevronDownIcon, PhoneIcon, PlayCircleIcon} from '@heroicons/react/20/solid'
+import {
+    BriefcaseIcon,
+    ChevronDownIcon, CodeBracketIcon,
+    CodeBracketSquareIcon,
+    PhoneIcon,
+    PlayCircleIcon
+} from '@heroicons/react/20/solid'
 import Link from "next/link";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -20,14 +26,14 @@ import Image from "next/image";
 
 const topics = [
     {name: 'Design Patterns', description: 'Yazılımın geliştirme aşamasındaki yeni bir senaryoda sorunun nasıl çözüleceğini bilmek için kullanılan bir şablon yöntemidir. Bu tasarım kalıplarını takip etmek, çeşitli geliştirme problemlerini çözmenize yardımcı olabilir.', href: '/topics/design-patterns', icon: Square3Stack3DIcon},
-    {name: 'SOLID Principles', description: 'This is SOLID Principles', href: '/topics/solid-principles', icon: SparklesIcon},
-    {name: 'Security', description: 'This is security', href: '#', icon: FingerPrintIcon},
-    {name: 'Integrations', description: 'This is integrations', href: '#', icon: SquaresPlusIcon},
+    {name: 'SOLID Prensipleri', description: 'Geliştirilen yazılımın esnek, yeniden kullanılabilir, sürdürülebilir ve anlaşılır olmasını sağlayan, kod tekrarını önleyen ve Robert C. Martin tarafından öne sürülen prensipler bütünüdür.', href: '/topics/solid-principles', icon: SparklesIcon},
+    {name: 'Core Java', description: 'Temel Java', href: '#', icon: CodeBracketSquareIcon},
+    {name: 'Advance Java - Spring Framework', description: 'İleri Seviye Java - Spring Framework (Boot, Config, Security, ...)', href: '#', icon: CodeBracketIcon},
     {name: 'Automations', description: 'This is automations', href: '#', icon: ArrowPathIcon},
 ]
 const callsToAction = [
-    {name: 'Watch demo', href: '#', icon: PlayCircleIcon},
-    {name: 'Contact sales', href: '#', icon: PhoneIcon},
+    {name: 'YouTube', href: '#', icon: PlayCircleIcon},
+    {name: 'LinkedIn', href: '#', icon: BriefcaseIcon},
 ]
 
 function classNames(...classes) {
@@ -104,7 +110,7 @@ export default function Header() {
                     <Popover className="relative">
                         <Popover.Button
                             className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-                            Topics
+                            Konular
                             <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true"/>
                         </Popover.Button>
 
@@ -158,13 +164,16 @@ export default function Header() {
                     </Popover>
 
                     <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                        Features
+                        Özellikler
                     </a>
                     <a href="/customers" className="text-sm font-semibold leading-6 text-gray-900">
-                        Customers
+                        Kullanıcılar
                     </a>
                     <a href={`/profile/${data}`} className="text-sm font-semibold leading-6 text-gray-900">
-                        Profile
+                        Profilim
+                    </a>
+                    <a href={`/about`} className="text-sm font-semibold leading-6 text-gray-900">
+                        Hakkında
                     </a>
                 </Popover.Group>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -179,11 +188,11 @@ export default function Header() {
                             <div>
                                 <a href="/login"
                                    className="text-sm font-semibold leading-6 text-gray-900">
-                                    Login
+                                    Giriş Yap
                                 </a> &nbsp;<span className="text-primary">|</span> &nbsp;
                                 <a href="/signup"
                                    className="text-sm font-semibold leading-6 text-gray-900">
-                                    Signup
+                                    Kayıt Ol
                                 </a>
                             </div>
                         )

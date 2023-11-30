@@ -1,6 +1,4 @@
 
-9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 A
 postcss.config.js,3\f\3f70684581fd16ab3be77ca959e0138ef3ee8bfb
 L
@@ -13,26 +11,46 @@ T
 $src/app/api/users/customers/route.ts,2\7\27e22ff34e9f8a75d13c85d1f26afa036cb0cd66
 G
 src/models/userModel.js,5\4\54a8ae5d561903a36ea185a01c35a8ff2d235fe1
-M
-src/app/api/users/me/route.ts,b\2\b28ffb363d6a6b73b4fccf4273a1dec77eb57e87
 4
 .env,3\c\3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
 E
 src/app/not-found.tsx,5\6\566fd345528a2a2239d7e8274d13c27baa8a8402
-P
- src/app/api/users/login/route.ts,1\5\152142eebe9877eb758e2c2eb7a225bd3733a3c8
 V
 &src/app/api/users/verifyemail/route.ts,c\5\c596fd1dbc63cd8cfa343a3fb18e5cae68cde6da
 E
 src/helpers/mailer.ts,e\f\efc413686b0538818a340f80e5ee4258796640c0
-F
-src/app/login/page.tsx,0\d\0de71383b279c151efbcd91d21333819635113ab
 :
 
 sample.env,c\f\cf8429425f2e40e704e19e7c367066349a7b0d86
 B
 tailwind.config.ts,5\2\52c961376029165b06e7861b1dc68c3b2455eeff
-L
-src/app/verifyemail/page.tsx,d\4\d408dcfc1386f23acdb4d9fda3b752a06b908b3d
 >
 next.config.js,8\1\811a6d5a2e04fadb44d8eec365f2fa8af5c4facf
+W
+'src/app/topics/design-patterns/page.tsx,a\2\a2a84f49d39dc8284dea82808fc61f7eee359ef2
+<
+package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
+G
+src/app/signup/page.tsx,8\5\85022a33a6bfb1a6b1935889eb57f0a68c6aee36
+@
+src/app/page.tsx,3\3\3393394e21dbac7686e91ad17c5283fb052d67f3
+X
+(src/app/topics/solid-principles/page.tsx,e\8\e81370004337aefd60f2b462066529f1382d3757
+O
+src/helpers/getDataFromToken.ts,a\d\ad466917964d3db13ddd98c6944a757316fc0d67
+L
+src/app/verifyemail/page.tsx,d\4\d408dcfc1386f23acdb4d9fda3b752a06b908b3d
+n
+>src/app/topics/design-patterns/creational/singleton/styles.css,d\e\dece6b0d666aaa743650b40a4cb47b36a22131ca
+j
+:src/app/topics/design-patterns/creational/builder/page.tsx,5\0\500cc1112d42abee04d27cd91fdbfc795230a6ce
+S
+#src/app/profile/[username]/page.tsx,a\6\a62d86b6c027b845c8dacc0687554c0033abc4ce
+j
+:src/app/topics/design-patterns/creational/factory/page.tsx,b\7\b72634d2a1308018f4e497c1a79bc53fdd0f1041
+l
+<src/app/topics/design-patterns/creational/singleton/page.tsx,5\7\579210ec0a594a4022ca7b461902abd0c7247535
+s
+Csrc/app/topics/design-patterns/creational/abstract-factory/page.tsx,d\e\de495c32243e8274b5fb4a5302a3f0d66f08c80f
+l
+<src/app/topics/design-patterns/creational/prototype/page.tsx,b\d\bdbe90fb93140a6e79977aeb038c0e980f85936a

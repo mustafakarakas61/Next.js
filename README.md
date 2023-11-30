@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Proje deployed on [Vercel App](https://next-a5olfrlpd-mustafakarakas61.vercel.app/)
+## Proje deployed on [Vercel App](https://mustafakarakas.vercel.app/)
 
 ## Getting Started
 - `npm install, npm i axios bcryptjs jsonwebtoken nodemailer react-hot-toast mongoose` gerekli kütüphaneler başlarken
@@ -35,3 +35,13 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+## Links
+
+- [Mustafa Karakaş - Vercel App](https://mustafakarakas.vercel.app/)
+- [Next.js Tutorial YouTube Link](https://youtu.be/ETV17M4SauU?si=1e3PCFVJwq_uCrqI)
+- [Mail Trap](https://mailtrap.io)
+- [MongoDB Cloud](https://www.mongodb.com/products/platform/cloud)
+- [Tailwind Docs](tailwindcss.com/docs/)
+- [Hero Icons](https://heroicons.com)
