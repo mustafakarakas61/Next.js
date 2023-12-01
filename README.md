@@ -45,3 +45,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - [MongoDB Cloud](https://www.mongodb.com/products/platform/cloud)
 - [Tailwind Docs](tailwindcss.com/docs/)
 - [Hero Icons](https://heroicons.com)
+- [Gmail APP Password](https://myaccount.google.com/apppasswords)
