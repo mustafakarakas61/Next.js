@@ -33,9 +33,15 @@ export const sendEmail = async ({email, emailType, userId}: any) => {
         const mailOptions = {
             from: `${process.env.MAIL_ADD}`,
             to: email,
-            subject: emailType === "VERIFY" ? "Verify your email" : "Reset your password",
-            html: `<p>Click <a href={url}>here</a> to ${emailType === "VERIFY" ? "verify your email" : "reset your password"}
-            or copy and paste the link below in your browser. <br> ${process.env.DOMAIN}/verifyemail?token=${hashedToken}</p>`
+            subject: emailType === "VERIFY" ? "Mail Adresinizi Onaylayın" : "Şifrenizi Resetleyin",
+            html: `<p>
+                    Merhaba, <br><br>
+                    <a href="{url}">Bu linke</a> tıklayarak ${emailType === "VERIFY" ? "emailinizi onaylayabilir" : "şifrenizi değiştirebilir"}siniz. 
+                    Alternatif olarak, linki tarayıcınıza yapıştırıp doğrulama işlemini gerçekleştirebilirsiniz.
+                    Link : ${process.env.DOMAIN}/verifyemail?token=${hashedToken}
+                    <br><br>
+                    Saygılarımla, <br>
+                </p>`
         }
 
         const mailResponse = await transport.sendMail(mailOptions);
