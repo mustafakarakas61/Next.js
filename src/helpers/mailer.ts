@@ -36,7 +36,7 @@ export const sendEmail = async ({email, emailType, userId}: any) => {
             subject: emailType === "VERIFY" ? "Mail Adresinizi Onaylayın" : "Şifrenizi Resetleyin",
             html: `<p>
                     Merhaba, <br><br>
-                    <a href="{url}">Bu linke</a> tıklayarak ${emailType === "VERIFY" ? "emailinizi onaylayabilir" : "şifrenizi değiştirebilir"}siniz. 
+                    <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}">Bu linke</a> tıklayarak ${emailType === "VERIFY" ? "emailinizi onaylayabilir" : "şifrenizi değiştirebilir"}siniz. 
                     Alternatif olarak, linki tarayıcınıza yapıştırıp doğrulama işlemini gerçekleştirebilirsiniz.
                     Link : ${process.env.DOMAIN}/verifyemail?token=${hashedToken}
                     <br><br>
