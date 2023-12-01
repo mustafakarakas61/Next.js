@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
         const reqBody = await request.json();
         const {username, password} = reqBody;
 
-        const isValidEmail = (email) => {
+        const isValidEmail = (email:any) => {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailRegex.test(email);
         };
