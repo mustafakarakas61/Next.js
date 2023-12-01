@@ -13,12 +13,23 @@ export async function POST(request: NextRequest) {
         const reqBody = await request.json();
         const {username, password} = reqBody;
 
+        const isValidEmail = (email) => {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        };
+
+
         if (username.toString().length < 4 || password.toString().length < 4) {
             return NextResponse.json({error: "Please enter more than 4 characters"}, {status: 400})
         }
 
         // check if user exists
-        const user = await User.findOne({username})
+        let user;
+        if (isValidEmail(username)) {
+            user = await User.findOne({email: username});
+        } else {
+            user = await User.findOne({username})
+        }
 
         if (!user) {
             return NextResponse.json({error: "User does not exist"}, {status: 400})

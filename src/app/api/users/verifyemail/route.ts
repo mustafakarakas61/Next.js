@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
         const user = await User.findOne({verifyToken: token, verifyTokenExpiry: {$gt: Date.now()}});
 
         if (!user) {
-            return NextResponse.json({error: "Invalid token"}, {status: 400})
+            return NextResponse.json({error: "Geçersiz token"}, {status: 400})
         }
         console.log(user);
 
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
         await user.save();
 
         return NextResponse.json({
-            message: "Email verified successfully",
+            message: "Email başarıyla doğrulandı",
             success: true
         })
     } catch (error: any) {

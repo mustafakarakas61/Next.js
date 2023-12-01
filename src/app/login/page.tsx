@@ -38,13 +38,13 @@ export default function LoginPage() {
         } else {
             setButtonDisabled(true);
         }
-    }, [user]);
+    }, [user.username, user.password]);
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1>{loading ? <span className="loading loading-spinner text-white"></span>:<span className="text-3xl">Login</span>}</h1>
+            <h1>{loading ? <span className="loading loading-spinner text-white"></span>:<span className="text-3xl">Giriş Yap</span>}</h1>
             <hr/>
-            <label htmlFor="username">username</label>
+            <label htmlFor="username">Kullanıcı Adı veya E-Posta</label>
             <input
                 className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
                 id="username"
@@ -54,9 +54,9 @@ export default function LoginPage() {
                     setUser({...user, username: e.target.value});
                     setErrorMessage(null);
                 }}
-                placeholder="username"
+                placeholder="Kullanıcı Adı ve E-Posta"
             />
-            <label htmlFor="password">password</label>
+            <label htmlFor="password">Şifre</label>
             <input
                 className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
                 id="password"
@@ -66,7 +66,7 @@ export default function LoginPage() {
                     setUser({...user, password: e.target.value});
                     setErrorMessage(null)
                 }}
-                placeholder="password"
+                placeholder="Şifre"
             />
             {
                 errorMessage ? (
@@ -80,9 +80,9 @@ export default function LoginPage() {
                 onClick={onLogin}
                 className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
             >
-                Login here
+                Giriş Yap
             </button>
-            <Link href="/signup">Don&apos;t have an account? Visit signup page!</Link>
+            <Link href="/signup">Hesabınız yok mu? Kayıt sayfasını ziyaret edin!</Link>
         </div>
     );
 }

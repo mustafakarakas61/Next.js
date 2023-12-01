@@ -12,27 +12,29 @@ connect()
 export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json()
-        const {name, surname, username, email, password} = reqBody
-
-        console.log(reqBody);
+        const {name, surname, username, email, password, acceptPassword} = reqBody
 
         // check if user already exists
         const user = await User.findOne({username})
 
         if (user) {
-            return NextResponse.json({error: "User already exists"}, {status: 400})
+            return NextResponse.json({error: "Kullanıcı zaten mevcut."}, {status: 400})
         }
 
         if (name.toString().length < 4 || surname.toString().length < 4 || username.toString().length < 4 || email.toString().length < 8) {
-            return NextResponse.json({error: "Please fill in the fields validly."}, {status: 400})
+            return NextResponse.json({error: "Lütfen alanları geçerli bir şekilde doldurunuz."}, {status: 400})
         }
 
         if (name.toString().length > 20 || surname.toString().length > 20 || username.toString().length > 15 || email.toString().length > 40) {
-            return NextResponse.json({error: "Please fill in the fields validly."}, {status: 400})
+            return NextResponse.json({error: "Lütfen alanları geçerli bir şekilde doldurunuz."}, {status: 400})
         }
 
         if (password.toString().length < 6) {
-            return NextResponse.json({error: "Please enter password more than 6 characters"}, {status: 400})
+            return NextResponse.json({error: "Lütfen şifrenizi 6 veya daha fazla uzunlukta giriniz"}, {status: 400})
+        }
+
+        if (password.toString() != acceptPassword.toString()) {
+            return NextResponse.json({error: "Şifreler uyuşmuyor!"}, {status: 400})
         }
 
         // hash password
