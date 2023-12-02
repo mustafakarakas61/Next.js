@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const ForgetPasswordModal = ({ onClose, onSubmit }:any) => {
-    const [email, setEmail] = useState('');
-    const modalRef = useRef(null);
+interface ForgetPasswordModalProps {
+    onClose: () => void;
+    onSubmit: (email: string) => void;
+}
 
-    const handleClickOutside = (event:any) => {
-        if (modalRef.current && !modalRef.current.contains(event.target)) {
+const ForgetPasswordModal: React.FC<ForgetPasswordModalProps> = ({ onClose, onSubmit }) => {
+    const [email, setEmail] = useState('');
+    const modalRef = useRef<HTMLDivElement | null>(null);
+
+    const handleClickOutside = (event: MouseEvent) => {
+        if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
             onClose();
         }
     };
