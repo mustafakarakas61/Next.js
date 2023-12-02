@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const ForgetPasswordModal = ({ onClose, onSubmit }) => {
+const ForgetPasswordModal = ({ onClose, onSubmit }:any) => {
     const [email, setEmail] = useState('');
     const modalRef = useRef(null);
 
