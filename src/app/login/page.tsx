@@ -44,7 +44,7 @@ export default function LoginPage() {
             setLoading(true)
             const response = await axios.post('/api/users/forgetpassword', {email});
             toast.success('Şifre sıfırlama bağlantısı gönderildi.');
-        } catch (error) {
+        } catch (error:any) {
             setErrorMessage(error.response?.data?.error  || "Bir hata oluştu");
         } finally {
             setLoading(false);
