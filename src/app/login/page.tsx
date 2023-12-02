@@ -39,7 +39,7 @@ export default function LoginPage() {
     const closeForgetPasswordModal = () => {
         setShowForgetPasswordModal(false);
     }
-    const handleForgetPasswordSubmit = async (email) => {
+    const handleForgetPasswordSubmit = async (email:any) => {
         try{
             setLoading(true)
             const response = await axios.post('/api/users/forgetpassword', {email});
