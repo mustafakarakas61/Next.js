@@ -5,15 +5,15 @@ import User from "@/models/userModel";
 // @ts-ignore
 import bcryptjs from "bcryptjs";
 
-export const sendEmail = async ({email, emailType, userId}: any) => {
+export const sendEmail = async ({user, emailType}: any) => {
     try {
         // create a hased token
-        const hashedToken = await bcryptjs.hash(userId.toString(), 10)
+        const hashedToken = await bcryptjs.hash(user._id.toString(), 10)
 
         if (emailType === "VERIFY") {
-            await User.findByIdAndUpdate(userId, {verifyToken: hashedToken, verifyTokenExpiry: Date.now() + 3600000})
+            await User.findByIdAndUpdate(user._id, {verifyToken: hashedToken, verifyTokenExpiry: Date.now() + 3600000})
         } else if (emailType === "RESET") {
-            await User.findByIdAndUpdate(userId, {
+            await User.findByIdAndUpdate(user._id, {
                 forgotPasswordToken: hashedToken,
                 forgotPasswordTokenExpiry: Date.now() + 3600000
             })
@@ -28,19 +28,19 @@ export const sendEmail = async ({email, emailType, userId}: any) => {
             }
         });
 
-        const url: string = `${process.env.DOMAIN}/verifyemail?token=${hashedToken}`;
+        const url: string = `${process.env.DOMAIN}/${emailType=== "VERIFY" ? "verifyemail" : "resetpassword"}?token=${hashedToken}`;
 
         const mailOptions = {
             from: `${process.env.MAIL_ADD}`,
-            to: email,
+            to: user.email,
             subject: emailType === "VERIFY" ? "Mail Adresinizi Onaylayın" : "Şifrenizi Resetleyin",
             html: `<p>
-                    Merhaba, <br><br>
-                    <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}">Bu linke</a> tıklayarak ${emailType === "VERIFY" ? "emailinizi onaylayabilir" : "şifrenizi değiştirebilir"}siniz. 
-                    Alternatif olarak, linki tarayıcınıza yapıştırıp doğrulama işlemini gerçekleştirebilirsiniz.
-                    Link : ${process.env.DOMAIN}/verifyemail?token=${hashedToken}
+                    Merhabalar <b>${user.name} ${user.surname} </b>, <br><br>
+                    <a href="${url}">Bu linke</a> tıklayarak ${emailType === "VERIFY" ? "emailinizi onaylayabilir" : "şifrenizi değiştirebilir"}siniz. 
+                    Alternatif olarak, linki tarayıcınıza yapıştırıp işlemi gerçekleştirebilirsiniz.
+                    <br>Link : ${url}
                     <br><br>
-                    Saygılarımla, <br>
+                    Saygılarımızla <br>
                 </p>`
         }
 

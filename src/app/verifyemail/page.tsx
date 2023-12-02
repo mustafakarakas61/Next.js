@@ -47,7 +47,7 @@ export default function VerifyEmailPage() {
             )}
             {error && (
                 <div>
-                    <h2 className="text-2xl">Hata</h2>
+                    <h2 className="text-2xl">Hata : ${error}</h2>
                 </div>
             )}
 

@@ -48,9 +48,8 @@ export default function SignupPage() {
             <h1>{loading ? <span className="loading loading-spinner text-white"></span> :
                 <span className="text-3xl">Kayıt Ol</span>}</h1>
             <hr/>
-            <div className="flex flex-row items-center justify-center">
+            <div className="flex flex-row items-center justify-center mt-5">
                 <div className="flex flex-col items-center justify-center mr-5">
-                    <label htmlFor="name">Ad</label>
                     <input
                         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
                         id="name"
@@ -64,7 +63,6 @@ export default function SignupPage() {
                     />
                 </div>
                 <div className="flex flex-col items-center justify-center">
-                    <label htmlFor="surname">Soyad</label>
                     <input
                         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
                         id="surname"
@@ -80,7 +78,6 @@ export default function SignupPage() {
             </div>
             <div className="flex flex-row items-center justify-center">
                 <div className="flex flex-col items-center justify-center mr-5">
-                    <label htmlFor="username">Kullanıcı Adı</label>
                     <input
                         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
                         id="username"
@@ -94,7 +91,6 @@ export default function SignupPage() {
                     />
                 </div>
                 <div className="flex flex-col items-center justify-center">
-                    <label htmlFor="email">E-Posta</label>
                     <input
                         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
                         id="email"
@@ -111,7 +107,6 @@ export default function SignupPage() {
 
             <div className="flex flex-row items-center justify-center">
                 <div className="flex flex-col items-center justify-center mr-5">
-                    <label htmlFor="password">Şifre</label>
                     <input
                         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
                         id="password"
@@ -125,7 +120,6 @@ export default function SignupPage() {
                     />
                 </div>
                 <div className="flex flex-col items-center justify-center">
-                    <label htmlFor="accept-password">Şifrenizi Tekrar Giriniz</label>
                     <input
                         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
                         id="accept-password"

@@ -52,12 +52,11 @@ export async function POST(request: NextRequest) {
         const savedUser = await newUser.save()
 
         // send verification email
-        await sendEmail({email, emailType: "VERIFY", userId: savedUser._id})
+        await sendEmail({user:savedUser, emailType: "VERIFY"})
 
         return NextResponse.json({
-            message: "User created successfully",
+            message: "Kullanıcı başarıyla oluşturuldu",
             success: true,
-            savedUser
         })
 
     } catch (error: any) {

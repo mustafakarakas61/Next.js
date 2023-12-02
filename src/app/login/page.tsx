@@ -4,6 +4,7 @@ import React, {useEffect} from "react";
 import {useRouter} from "next/navigation";
 import axios from "axios"
 import toast from "react-hot-toast";
+import ForgetPasswordModal from "@/modals/forgetPasswordModal";
 
 export default function LoginPage() {
     const router = useRouter();
@@ -14,6 +15,7 @@ export default function LoginPage() {
     const [buttonDisabled, setButtonDisabled] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
     const [errorMessage, setErrorMessage] = React.useState(null);
+    const [showForgetPasswordModal, setShowForgetPasswordModal] = React.useState(false);
 
     const onLogin = async () => {
         try{
@@ -31,6 +33,24 @@ export default function LoginPage() {
         }
     }
 
+    const openForgetPasswordModal = () => {
+        setShowForgetPasswordModal(true);
+    };
+    const closeForgetPasswordModal = () => {
+        setShowForgetPasswordModal(false);
+    }
+    const handleForgetPasswordSubmit = async (email) => {
+        try{
+            setLoading(true)
+            const response = await axios.post('/api/users/forgetpassword', {email});
+            toast.success('Şifre sıfırlama bağlantısı gönderildi.');
+        } catch (error) {
+            setErrorMessage(error.response?.data?.error  || "Bir hata oluştu");
+        } finally {
+            setLoading(false);
+        }
+    }
+
     useEffect(() => {
         if(user.username.length > 0 && user.password.length > 0) {
             setButtonDisabled(false);
@@ -43,9 +63,8 @@ export default function LoginPage() {
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
             <h1>{loading ? <span className="loading loading-spinner text-white"></span>:<span className="text-3xl">Giriş Yap</span>}</h1>
             <hr/>
-            <label htmlFor="username">Kullanıcı Adı veya E-Posta</label>
             <input
-                className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+                className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 mt-5"
                 id="username"
                 type="text"
                 value={user.username}
@@ -55,7 +74,6 @@ export default function LoginPage() {
                 }}
                 placeholder="Kullanıcı Adı ve E-Posta"
             />
-            <label htmlFor="password">Şifre</label>
             <input
                 className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
                 id="password"
@@ -75,12 +93,28 @@ export default function LoginPage() {
                 ) : null
             }
 
-            <button
-                onClick={onLogin}
-                className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
-            >
-                Giriş Yap
-            </button>
+            <div className="flex flex-row items-center justify-center space-x-2">
+                <button
+                    onClick={onLogin}
+                    className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none hover:border-gray-600"
+                >
+                    Giriş Yap
+                </button>
+                <button
+                    onClick={openForgetPasswordModal}
+                    className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none hover:border-gray-600 bg-gray-500 text-white"
+                >
+                    Şifremi Unuttum
+                </button>
+            </div>
+
+            {showForgetPasswordModal && (
+                <ForgetPasswordModal
+                    onClose={closeForgetPasswordModal}
+                    onSubmit={handleForgetPasswordSubmit}
+                />
+            )}
+
             <Link href="/signup">Hesabınız yok mu? Kayıt sayfasını ziyaret edin!</Link>
         </div>
     );

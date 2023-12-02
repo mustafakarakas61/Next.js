@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
 
 
         if (username.toString().length < 4 || password.toString().length < 4) {
-            return NextResponse.json({error: "Please enter more than 4 characters"}, {status: 400})
+            return NextResponse.json({error: "Lütfen en az 4 karakterli giriniz"}, {status: 400})
         }
 
         // check if user exists
@@ -32,18 +32,18 @@ export async function POST(request: NextRequest) {
         }
 
         if (!user) {
-            return NextResponse.json({error: "User does not exist"}, {status: 400})
+            return NextResponse.json({error: "Kullanıcı adı veya şifre hatalı"}, {status: 400})
         }
 
         // check if password is correct
         const validPassword = await bcryptjs.compare(password, user.password)
 
         if (!validPassword) {
-            return NextResponse.json({error: "Invalid password"}, {status: 400})
+            return NextResponse.json({error: "Kullanıcı adı veya şifre hatalı"}, {status: 400})
         }
 
         if (!user.isVerified) {
-            return NextResponse.json({error: "Please verify the email"}, {status: 400}) // 401 verince build hatası verdi
+            return NextResponse.json({error: "Lütfen emailinizi onaylayın"}, {status: 400}) // 401 verince build hatası verdi
         }
 
         // create token data
