@@ -4,7 +4,7 @@ const ForgetPasswordModal = ({ onClose, onSubmit }:any) => {
     const [email, setEmail] = useState('');
     const modalRef = useRef(null);
 
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event:any) => {
         if (modalRef.current && !modalRef.current.contains(event.target)) {
             onClose();
         }
