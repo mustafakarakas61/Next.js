@@ -4,6 +4,7 @@ import React, {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import axios from "axios"
 import toast from "react-hot-toast";
+import MessageBoxModal from "@/modals/messageBoxModal";
 
 export default function SignupPage() {
     const router = useRouter();
@@ -16,28 +17,31 @@ export default function SignupPage() {
         username: "",
     })
     const [loading, setLoading] = React.useState(false);
-    const [errorMessage, setErrorMessage] = useState(null);
+    const [showMessageBoxModal, setShowMessageBoxModal] = React.useState(false);
+    const [messageType, setMessageType] = React.useState<'info' | 'error' | null>(null);
+    const [modalMessage, setModalMessage] = React.useState('');
+
+    const openMessageBoxModal = (type: 'info' | 'error' | null, message: string) => {
+        setMessageType(type);
+        setModalMessage(message);
+        setShowMessageBoxModal(true);
+    };
+    const closeMessageBoxModel = () => {
+        setShowMessageBoxModal(false);
+        if(messageType === 'info' && modalMessage === "Kayıt işlemini tamamlamak için mail adresinizi kontrol edin.") {
+            router.push("/login");
+        }
+    }
+
 
     const onSignup = async () => {
         try {
             setLoading(true);
             const response = await axios.post("/api/users/signup", user);
 
-            router.push("/login");
-
+            openMessageBoxModal('info', "Kayıt işlemini tamamlamak için mail adresinizi kontrol edin.")
         } catch (error: any) {
-            console.log("Signup failed", error.message);
-            setErrorMessage(error.response.data.error)
-            toast.error(error.message);
-
-            setUser({
-                name: "",
-                surname: "",
-                email: "",
-                password: "",
-                acceptPassword: "",
-                username: "",
-            });
+            openMessageBoxModal('error', error.response.data.error)
         } finally {
             setLoading(false);
         }
@@ -57,7 +61,6 @@ export default function SignupPage() {
                         value={user.name}
                         onChange={(e) => {
                             setUser({...user, name: e.target.value})
-                            setErrorMessage(null)
                         }}
                         placeholder="Ad"
                     />
@@ -70,7 +73,6 @@ export default function SignupPage() {
                         value={user.surname}
                         onChange={(e) => {
                             setUser({...user, surname: e.target.value})
-                            setErrorMessage(null)
                         }}
                         placeholder="Soyad"
                     />
@@ -85,7 +87,6 @@ export default function SignupPage() {
                         value={user.username}
                         onChange={(e) => {
                             setUser({...user, username: e.target.value})
-                            setErrorMessage(null)
                         }}
                         placeholder="Kullanıcı Adı"
                     />
@@ -98,7 +99,6 @@ export default function SignupPage() {
                         value={user.email}
                         onChange={(e) => {
                             setUser({...user, email: e.target.value})
-                            setErrorMessage(null)
                         }}
                         placeholder="E-Posta"
                     />
@@ -114,7 +114,6 @@ export default function SignupPage() {
                         value={user.password}
                         onChange={(e) => {
                             setUser({...user, password: e.target.value})
-                            setErrorMessage(null)
                         }}
                         placeholder="Şifre"
                     />
@@ -127,19 +126,18 @@ export default function SignupPage() {
                         value={user.acceptPassword}
                         onChange={(e) => {
                             setUser({...user, acceptPassword: e.target.value})
-                            setErrorMessage(null)
                         }}
                         placeholder="Şifre Onayı"
                     />
                 </div>
             </div>
-            {
-                errorMessage ? (
-                    <div className="alert alert-error h-5 w-auto mt-2 pr-2 pb-8 text-sm mb-5">
-                        <span>{errorMessage}</span>
-                    </div>
-                ) : null
-            }
+            {showMessageBoxModal && (
+                <MessageBoxModal
+                    onClose={closeMessageBoxModel}
+                    messageType={messageType}
+                    message={modalMessage}
+                />
+            )}
 
             <button
                 onClick={onSignup}

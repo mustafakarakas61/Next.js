@@ -5,6 +5,7 @@ import {useRouter} from "next/navigation";
 import axios from "axios"
 import toast from "react-hot-toast";
 import ForgetPasswordModal from "@/modals/forgetPasswordModal";
+import MessageBoxModal from "@/modals/messageBoxModal";
 
 export default function LoginPage() {
     const router = useRouter();
@@ -14,24 +15,10 @@ export default function LoginPage() {
     })
     const [buttonDisabled, setButtonDisabled] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
-    const [errorMessage, setErrorMessage] = React.useState(null);
     const [showForgetPasswordModal, setShowForgetPasswordModal] = React.useState(false);
-
-    const onLogin = async () => {
-        try{
-            setLoading(true)
-            const response = await axios.post("/api/users/login", user);
-            toast.success("Login success");
-            router.push("/");
-            window.location.reload();
-        } catch (error:any) {
-            console.log("Login failed", error.message);
-            toast.error(error.message);
-            setErrorMessage(error.response.data.error)
-        } finally {
-            setLoading(false);
-        }
-    }
+    const [showMessageBoxModal, setShowMessageBoxModal] = React.useState(false);
+    const [messageType, setMessageType] = React.useState<'info' | 'error' | null>(null);
+    const [modalMessage, setModalMessage] = React.useState('');
 
     const openForgetPasswordModal = () => {
         setShowForgetPasswordModal(true);
@@ -39,20 +26,50 @@ export default function LoginPage() {
     const closeForgetPasswordModal = () => {
         setShowForgetPasswordModal(false);
     }
-    const handleForgetPasswordSubmit = async (email:any) => {
-        try{
+
+    const openMessageBoxModal = (type: 'info' | 'error' | null, message: string) => {
+        setMessageType(type);
+        setModalMessage(message);
+        setShowMessageBoxModal(true);
+    };
+    const closeMessageBoxModel = () => {
+        setShowMessageBoxModal(false);
+    }
+
+
+    const onLogin = async () => {
+        try {
+            setLoading(true)
+            const response = await axios.post("/api/users/login", user);
+            router.push("/");
+            window.location.reload();
+        } catch (error: any) {
+            openMessageBoxModal('error', error.response.data.error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    const handleKeyPress = (e) => {
+        if (e.key === "Enter" && !buttonDisabled) {
+            onLogin();
+        }
+    }
+
+    const handleForgetPasswordSubmit = async (email: any) => {
+        try {
             setLoading(true)
             const response = await axios.post('/api/users/forgetpassword', {email});
-            toast.success('Şifre sıfırlama bağlantısı gönderildi.');
-        } catch (error:any) {
-            setErrorMessage(error.response?.data?.error  || "Bir hata oluştu");
+            openMessageBoxModal('info', 'Şifre sıfırlama bağlantısı mailinize gönderildi.');
+        } catch (error: any) {
+            openMessageBoxModal('error', error.response?.data?.error || "Bir hata oluştu.");
         } finally {
             setLoading(false);
         }
     }
 
     useEffect(() => {
-        if(user.username.length > 0 && user.password.length > 0) {
+        if (user.username.length > 0 && user.password.length > 0) {
             setButtonDisabled(false);
         } else {
             setButtonDisabled(true);
@@ -61,17 +78,20 @@ export default function LoginPage() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
-            <h1>{loading ? <span className="loading loading-spinner text-white"></span>:<span className="text-3xl">Giriş Yap</span>}</h1>
+            <h1>{loading ? <span className="loading loading-spinner text-white"></span> :
+                <span className="text-3xl">Giriş Yap</span>}</h1>
             <hr/>
             <input
                 className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 mt-5"
                 id="username"
                 type="text"
                 value={user.username}
+                onClick={(e) => {
+                }}
                 onChange={(e) => {
                     setUser({...user, username: e.target.value});
-                    setErrorMessage(null);
                 }}
+                onKeyDown={handleKeyPress}
                 placeholder="Kullanıcı Adı ve E-Posta"
             />
             <input
@@ -79,19 +99,23 @@ export default function LoginPage() {
                 id="password"
                 type="password"
                 value={user.password}
+                onClick={(e) => {
+                }
+                }
                 onChange={(e) => {
                     setUser({...user, password: e.target.value});
-                    setErrorMessage(null)
                 }}
+                onKeyDown={handleKeyPress}
                 placeholder="Şifre"
             />
-            {
-                errorMessage ? (
-                    <div className="alert alert-error h-5 w-auto mt-2 pr-2 pb-8 text-sm mb-5">
-                        <span>{errorMessage}</span>
-                    </div>
-                ) : null
-            }
+
+            {showMessageBoxModal && (
+                <MessageBoxModal
+                    onClose={closeMessageBoxModel}
+                    messageType={messageType}
+                    message={modalMessage}
+                />
+            )}
 
             <div className="flex flex-row items-center justify-center space-x-2">
                 <button
