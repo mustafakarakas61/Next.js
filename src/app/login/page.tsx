@@ -50,7 +50,7 @@ export default function LoginPage() {
         }
     }
 
-    const handleKeyPress = (e) => {
+    const handleKeyPress = (e:any) => {
         if (e.key === "Enter" && !buttonDisabled) {
             onLogin();
         }
