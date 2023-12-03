@@ -6,15 +6,20 @@ import axios from "axios";
 export default function CustomersPage() {
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(true)
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false)
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                await axios.get("/api/users/me")
-                setIsLoggedIn(true)
+                const res = await axios.get("/api/users/me")
 
-                if (isLoggedIn) {
+                if(res.data?.data?.isAdmin){
+                    setIsAdminLoggedIn(true)
+                } else {
+                    setIsAdminLoggedIn(false)
+                }
+
+                if (isAdminLoggedIn) {
                     const fetchUsers = async () => {
                         try {
                             const res = await axios.get("/api/users/customers")
@@ -22,8 +27,6 @@ export default function CustomersPage() {
                             // console.log(res.data.data)
                         } catch (error) {
                             console.error(error)
-                        } finally {
-                            setLoading(false)
                         }
                     }
 
@@ -31,22 +34,23 @@ export default function CustomersPage() {
                 }
 
             } catch (error) {
-                setIsLoggedIn(false)
+                setIsAdminLoggedIn(false)
+            } finally {
                 setLoading(false)
             }
         }
 
         fetchUser();
-    }, [isLoggedIn])
+    }, [isAdminLoggedIn])
 
     return (
         <main className="flex flex-col items-center justify-center min-h-screen">
             <div className="flex items-center justify-center overflow-x-auto h-96">
                 {loading ? (
                     <span className="loading loading-spinner text-white"></span>
-                ) : isLoggedIn && users.length > 0 ? (
+                ) : isAdminLoggedIn ? (
                     <div className="items-center justify-center overflow-x-auto h-96">
-                        <table className = "flex table table-pin-rows">
+                        <table className="flex table table-pin-rows">
                             <thead>
                             <tr>
                                 <th>No</th>
@@ -69,7 +73,7 @@ export default function CustomersPage() {
                         </table>
                     </div>
                 ) : (
-                    <p>No users available, please log in</p>
+                    <p>Bu sayfayı sadece yetkili kişiler görüntüleyebilir</p>
                 )}
             </div>
         </main>

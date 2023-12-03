@@ -13,8 +13,16 @@ export default function UserProfile({params}: any) {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                setData(await axios.get("/api/users/me"))
-                setIsLoggedIn(true)
+                const res = await axios.get("/api/users/me")
+
+                if(res.data.data != null) {
+                    setData(res)
+                    setIsLoggedIn(true)
+                } else {
+                    setIsLoggedIn(false)
+                }
+
+
             } catch (error: any) {
                 setIsLoggedIn(false)
             } finally {
@@ -53,7 +61,7 @@ export default function UserProfile({params}: any) {
                         <hr/>
                         <p className="text-4xl">
                                 <span className="text-white">{
-                                    data != null ? (<span>{data.data.data.name} {data.data.data.surname}</span>) : null
+                                    data != null ? (<span>{data.data.data?.name} {data.data.data?.surname}</span>) : null
                                 }</span>
                             <span className="p-2 ml-2 rounded bg-blue-500 text-black">{params.username}</span>
                         </p>

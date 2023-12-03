@@ -5,9 +5,9 @@ import User from "@/models/userModel"
 
 connect()
 
-export async function GET(request: NextRequest) {
+export async function GET() {
     try {
-        const userId = await getDataFromToken(request);
+        const userId = await getDataFromToken();
         const user = await User.findOne({_id: userId}).select("-password");
         return NextResponse.json(
             {
@@ -16,6 +16,6 @@ export async function GET(request: NextRequest) {
             }
         )
     } catch (error: any) {
-        return NextResponse.json({error: error.message}, {status: 400})
+        return NextResponse.json({data: null},{error: error.message}, {status: 400})
     }
 }

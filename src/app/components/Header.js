@@ -25,10 +25,25 @@ import {useRouter} from "next/navigation";
 import Image from "next/image";
 
 const topics = [
-    {name: 'Design Patterns', description: 'Yazılımın geliştirme aşamasındaki yeni bir senaryoda sorunun nasıl çözüleceğini bilmek için kullanılan bir şablon yöntemidir. Bu tasarım kalıplarını takip etmek, çeşitli geliştirme problemlerini çözmenize yardımcı olabilir.', href: '/topics/design-patterns', icon: Square3Stack3DIcon},
-    {name: 'SOLID Prensipleri', description: 'Geliştirilen yazılımın esnek, yeniden kullanılabilir, sürdürülebilir ve anlaşılır olmasını sağlayan, kod tekrarını önleyen ve Robert C. Martin tarafından öne sürülen prensipler bütünüdür.', href: '/topics/solid-principles', icon: SparklesIcon},
+    {
+        name: 'Design Patterns',
+        description: 'Yazılımın geliştirme aşamasındaki yeni bir senaryoda sorunun nasıl çözüleceğini bilmek için kullanılan bir şablon yöntemidir. Bu tasarım kalıplarını takip etmek, çeşitli geliştirme problemlerini çözmenize yardımcı olabilir.',
+        href: '/topics/design-patterns',
+        icon: Square3Stack3DIcon
+    },
+    {
+        name: 'SOLID Prensipleri',
+        description: 'Geliştirilen yazılımın esnek, yeniden kullanılabilir, sürdürülebilir ve anlaşılır olmasını sağlayan, kod tekrarını önleyen ve Robert C. Martin tarafından öne sürülen prensipler bütünüdür.',
+        href: '/topics/solid-principles',
+        icon: SparklesIcon
+    },
     {name: 'Core Java', description: 'Temel Java', href: '#', icon: CodeBracketSquareIcon},
-    {name: 'Advance Java - Spring Framework', description: 'İleri Seviye Java - Spring Framework (Boot, Config, Security, ...)', href: '#', icon: CodeBracketIcon},
+    {
+        name: 'Advance Java - Spring Framework',
+        description: 'İleri Seviye Java - Spring Framework (Boot, Config, Security, ...)',
+        href: '#',
+        icon: CodeBracketIcon
+    },
     {name: 'Automations', description: 'This is automations', href: '#', icon: ArrowPathIcon},
 ]
 const callsToAction = [
@@ -45,40 +60,42 @@ export default function Header() {
     const router = useRouter()
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [loading, setLoading] = useState(true)
-    const [data, setData] = useState(null)
+    const [data, setData] = useState()
+    const [isLoading, setIsLoading] = useState(true);
 
     const logout = async () => {
-        setIsLoggedIn(false)
         try {
-            setLoading(true)
             await axios.get("/api/users/logout")
-            toast.success("Logout successful")
             router.push("/login")
         } catch (error) {
             console.error(error)
-            setIsLoggedIn(true)
         } finally {
-            setLoading(false)
+            setIsLoggedIn(false)
+            console.log("data null")
+            setData(null)
         }
     }
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                setLoading(true)
+                setIsLoading(true);
                 const res = await axios.get('/api/users/me')
                 setData(res.data.data.username)
                 setIsLoggedIn(true)
             } catch (error) {
-                try{
+                try {
                     await axios.get("/api/users/logout")
                 } catch (error) {
+                    console.error(error)
+                    console.log("yes data null")
+                    setData(null)
+                } finally {
                     setIsLoggedIn(false)
+                    setData(null)
                 }
-                setIsLoggedIn(false)
-            } finally {
-                setLoading(false)
+            }finally {
+                setIsLoading(false);
             }
         };
 
@@ -177,21 +194,20 @@ export default function Header() {
                     </a>
                 </Popover.Group>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                    {loading ? (
+                    {isLoading ? (
                         <span className="text-black loading loading-ball loading-sm"></span>
                     ) : (
-                        isLoggedIn ? (
+                        data !== null ? (
                             <a onClick={logout} href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                                Logout <span aria-hidden="true">&#128682;</span>
+                                Çıkış Yap <span aria-hidden="true">&#128682;</span>
                             </a>
                         ) : (
                             <div>
-                                <a href="/login"
-                                   className="text-sm font-semibold leading-6 text-gray-900">
+                                <a href="/login" className="text-sm font-semibold leading-6 text-gray-900">
                                     Giriş Yap
-                                </a> &nbsp;<span className="text-primary">|</span> &nbsp;
-                                <a href="/signup"
-                                   className="text-sm font-semibold leading-6 text-gray-900">
+                                </a>{" "}
+                                &nbsp;<span className="text-primary">|</span> &nbsp;
+                                <a href="/signup" className="text-sm font-semibold leading-6 text-gray-900">
                                     Kayıt Ol
                                 </a>
                             </div>
@@ -274,12 +290,12 @@ export default function Header() {
                                 {isLoggedIn ? (
                                     <Link onClick={logout} href="#"
                                           className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                                        Logout
+                                        Çıkış
                                     </Link>
                                 ) : (
                                     <Link href="/login"
                                           className="text-sm font-semibold leading-6 text-gray-900">
-                                        Login <span aria-hidden="true">&rarr;</span>
+                                        Giriş Yap <span aria-hidden="true">&rarr;</span>
                                     </Link>
                                 )}
                             </div>
